@@ -10,7 +10,7 @@ pipeline {
         }
       }
       steps {
-        sh 'mvn clean install'
+        sh 'mvn clean install -Dcheckstyle.skip'
       }
     }
     stage('Docker Build') {
