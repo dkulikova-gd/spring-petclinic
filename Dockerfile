@@ -1,3 +1,4 @@
 FROM anapsix/alpine-java 
-COPY /target/spring-petclinic-1.5.1.jar /home/spring-petclinic-1.5.1.jar 
-CMD ["java","-jar","/home/spring-petclinic-1.5.1.jar"]
+COPY /var/jenkins_home/workspace/spring-petclinic-docker/target/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar /home/
+
+CMD ["java","-jar","/home/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar"]
