@@ -10,7 +10,8 @@ pipeline {
         }
       }
       steps {
-        sh 'mvn clean install -Dcheckstyle.skip'
+        sh 'mvn clean package -Dcheckstyle.skip'
+	sh 'cp /var/jenkins_home/workspace/spring-petclinic-docker/target/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar /var/jenkins_home/workspace/spring-petclinic-docker'
       }
     }
     stage('Docker Build') {
