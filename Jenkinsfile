@@ -3,6 +3,7 @@
 pipeline {
   agent none
   stages {
+    try{
     stage('Maven Install') {
       agent {
         docker {
@@ -11,9 +12,12 @@ pipeline {
       }
       steps {
         sh 'mvn clean package -Dcheckstyle.skip'
-	sh 'cp /var/jenkins_home/workspace/spring-petclinic-docker/target/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar /var/jenkins_home/workspace/spring-petclinic-docker'
+	sh 'cp /var/jenkins_home/workspace/spring-petclinic-docker/target/spring-petclinic-2.3.0.BUILD-SNAPSHO.jar /var/jenkins_home/workspace/spring-petclinic-docker'
       }
     }
+    } catch(err){
+        throw e
+    }    
     stage('Docker Build') {
       agent any
       steps {
