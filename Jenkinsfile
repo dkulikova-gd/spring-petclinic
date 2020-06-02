@@ -23,10 +23,9 @@ pipeline {
     stage('Docker Push') {
       agent any
       steps {
-        withDockerRegistry([credentialsId: "dockerHub", url: ""]){
-          sh 'docker push dkulikova-gd/spring-petclinic:latest'
-        }
-      }
+        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword} docker.io"
+          sh 'docker push dkulikova-gd/spring-petclinic:latest'      }
     }
   }
 }
